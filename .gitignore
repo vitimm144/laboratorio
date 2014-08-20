@@ -1,0 +1,16 @@
+.tmp
+nbproject/*
+nbproject
+bin
+build
+include
+lib
+local
+man
+share
+.Python
+*.pyc
+*~
+*.sqlite3
+.DS_Store
+.idea

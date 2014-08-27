@@ -38,15 +38,19 @@ class Medico (models.Model):
     crm = models.CharField(max_length=10, verbose_name='CRM')
     nome_medico = models.CharField(max_length=200, verbose_name='Nome:')
 
-class tabela_exame (models.Model):
-    nome_tabela = models.CharField(max_length=200, verbose_name='Nome da Tabela de Exames')
-    codigo_exame = models.CharField(max_length=10, verbose_name='Código do Exame')
+
+class Exame(models.Model):
     nome_exame = models.CharField(max_length=100, verbose_name='Nome do Exame')
     ch = models.CharField(max_length=5, verbose_name='Valor de CH')
+    codigo_exame = models.CharField(max_length=10, verbose_name='Código do Exame')
 
-class convenio (models.Model):
+
+class Tabela_exame (models.Model):
+    nome_tabela = models.CharField(max_length=200, verbose_name='Nome da Tabela de Exames')
+    exames = models.ManyToManyField('Exame', related_name='exames')
+
+
+class Convenio (models.Model):
     nome_convenio = models.CharField(max_length=100, verbose_name='Nome do Convenio')
-    tipo_tabela = models.CharField(verbose_name='Tipo de Tabela')
+    tipo_tabela = models.ForeignKey('Tabela_exame', verbose_name='Tipo de Tabela')
     precificacao = models.CharField(max_length=10, verbose_name='Precificação')
-
-# Create your models here.

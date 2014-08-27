@@ -34,7 +34,7 @@ class Paciente(models.Model):
     informacao_menor = models.CharField(max_length=200, verbose_name='Informações do Menor', null=True)
 
 
-class medico (models.Model):
+class Medico (models.Model):
     crm = models.CharField(max_length=10, verbose_name='CRM')
     nome_medico = models.CharField(max_length=200, verbose_name='Nome:')
 

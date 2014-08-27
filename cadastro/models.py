@@ -13,13 +13,15 @@ class Paciente(models.Model):
     sexo = models.CharField(max_length=2, choices=GENDER_CHOICES, verbose_name='Sexo')
     data_nascimento = models.DateField(verbose_name='Data de Nascimento')
     nome_mae = models.CharField(max_length=200, verbose_name='Nome da Mãe')
+    #TODO: pesquisar preenchimento automatico pelo site dos correios
     cep = models.CharField(max_length=10, null=True, verbose_name='CEP')
     endereco = models.CharField(max_length=200, verbose_name='Endereço')
     numero = models.CharField(max_length=20, verbose_name='numero')
     complemento = models.CharField(max_length=100, verbose_name='Compl.')
     bairro = models.CharField(max_length=50, verbose_name='Bairro')
     cidade = models.CharField(max_length=100, verbose_name='Cidade')
-    uf = models.BRStatefield(verbose_name='UF')
+    #TODO: rever uso de UF pois quase 100% dos pacientes atendidos são do Estado
+    uf = models.CharField(max_length=2, verbose_name='UF', default='RJ')
     rg = models.CharField(max_length=12, verbose_name='RG')
     cpf = models.CharField(max_length=12, verbose_name='CPF')
     telefone = models.CharField(max_length='10', verbose_name='Telefone')

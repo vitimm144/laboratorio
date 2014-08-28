@@ -56,3 +56,29 @@ class Convenio (models.Model):
     nome_convenio = models.CharField(max_length=100, verbose_name='Nome do Convenio')
     tipo_tabela = models.ForeignKey('Tabela_exame', verbose_name='Tipo de Tabela')
     precificacao = models.CharField(max_length=10, verbose_name='Precificação')
+
+
+class Atendimento(models.Model):
+
+    data_coleta = models.DateTimeField(auto_now_add=True)
+    #TODO: O codigo do atendimento obedece ao local de coleta
+    codigo = models.IntegerField(verbose_name='Codigo do atendimento', unique=True, auto_created=True)
+    paciente = models.ForeignKey('Paciente', verbose_name='Paciente')
+    medico = models.ForeignKey('Medico', verbose_name='Médico solicitante')
+    atendimento_exames = models.ManyToManyField('Atendimento_exame', related_name='atendimento_exames')
+    data_resultado = models.DateField()
+    observacao = models.TextField()
+    peso = models.CharField(max_length=10, verbose_name='Peso')
+    altura = models.CharField(max_length=4, verbose_name='Altura')
+    dum = models.CharField(max_length=10, verbose_name='DUM')
+    # valor_total = models.DecimalField(verbose_name='Valor total')
+    # valor_pago = models.DecimalField(verbose_name='Valor pago')
+    # valor_devido = models.DecimalField(verbose_name='Valor devido')
+    medicamentos = models.TextField(verbose_name='Medicamentos', null=True)
+    #TODO:criar uma senha randomica para acesso do paciente para os laudos via internet
+    senha = models.CharField(max_length=8, verbose_name='Senha internet')
+
+
+class Atendimento_exame(models.Model):
+    convenios = models.ForeignKey('Convenio')
+    exames = models.ManyToManyField('Exame')

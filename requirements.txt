@@ -1,0 +1,13 @@
+Django
+Unipath
+dj-database-url
+dj-static
+gunicorn
+psycopg2
+django-decouple
+mock
+markdown
+django-filter
+psycopg2
+django-bootstrap3
+ipdb

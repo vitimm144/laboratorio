@@ -38,6 +38,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'login',
     'cadastro',
+    'bootstrap3',
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -53,7 +55,7 @@ ROOT_URLCONF = 'laboratorio.urls'
 
 WSGI_APPLICATION = 'laboratorio.wsgi.application'
 
-
+# AUTH_USER_MODEL='login.User'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 

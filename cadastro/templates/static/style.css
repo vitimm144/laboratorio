@@ -1,0 +1,30 @@
+#header p{
+    color: #FF0;
+}
+
+    #wrap{
+	width: 900px;
+	margin: 0 auto;
+}
+.cad_pac{
+	width: 900px;
+	float: left;
+}
+.cad_pac label{
+	font-family: "Trebuchet", Arial, Serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #000;
+}
+.cad_pac input{
+	font-family: Times;
+	color: #333;
+	font-size: 14px;
+	margin-bottom: 5px;
+}
+.tam1{
+	width: 150px;
+}
+.tam2{
+	width: 720px;
+}

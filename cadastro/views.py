@@ -3,6 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView, ListView
 from .models import Paciente
 from .forms import PacienteForm
+from .models import Medico
+from .forms import MedicoForm
+
 
 
 @login_required(login_url='/login/')
@@ -21,3 +24,15 @@ class CadastroPacienteView(CreateView):
 
 class PacienteListView(ListView):
     model = Paciente
+
+class CadastroMedicoView(CreateView):
+    model = Medico
+    form_class = MedicoForm
+    template_name = 'medico_form.html'
+
+    #def post(self, request, *args, **kwargs);
+    #   import ipdb; ipdb.set_trace()
+    #   return super (CadastroMedicoView, self).post(request, *args, **kwargs)
+
+class MedicoListView(ListView):
+    model = Medico

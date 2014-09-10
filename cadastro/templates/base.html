@@ -14,7 +14,14 @@
 <body>
   <div id="page">
     <div id="header">
-        <p>Bem vindo, {{ user.username }}.</p>
+        <div class="header1">
+            <div class="logo">
+                <img src="{% static 'images/logo_salopar.png' %}">
+            </div>
+            <div class="descr_topo">
+                <p><b>Posto:</b> Provisório<br> <b>Usuário:</b> {{ user.username }}.</p>
+            </div>
+        </div>
     </div>
 
     <hr>

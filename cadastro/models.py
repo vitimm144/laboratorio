@@ -42,9 +42,10 @@ class Medico (models.Model):
 
 
 class Exame(models.Model):
+    codigo_exame = models.CharField(max_length=10, verbose_name='Código do Exame')
     nome_exame = models.CharField(max_length=100, verbose_name='Nome do Exame')
     ch = models.CharField(max_length=5, verbose_name='Valor de CH')
-    codigo_exame = models.CharField(max_length=10, verbose_name='Código do Exame')
+
 
 
 class Tabela_exame (models.Model):

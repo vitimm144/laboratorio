@@ -9,6 +9,8 @@ from .models import Exame
 from .forms import ExameForm
 from .models import Tabela_exame
 from .forms import TexameForm
+from .models import Convenio
+from .forms import ConvenioForm
 
 
 
@@ -56,3 +58,11 @@ class CadastroTexameView(CreateView):
 
 class TexameListView(ListView):
     model = Tabela_exame
+
+class CadastroConvenioView(CreateView):
+    model = Convenio
+    form_class = ConvenioForm
+    template_name = 'convenio_form.html'
+
+class ConvenioListView(ListView):
+    model = Convenio

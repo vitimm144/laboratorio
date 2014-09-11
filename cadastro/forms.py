@@ -2,6 +2,7 @@ from django.forms import ModelForm
 from .models import Paciente
 from .models import Medico
 from .models import Exame
+from .models import Tabela_exame
 
 class PacienteForm(ModelForm):
     class Meta:
@@ -14,3 +15,7 @@ class MedicoForm(ModelForm):
 class ExameForm(ModelForm):
     class Meta:
         model = Exame
+
+class TexameForm(ModelForm):
+    class Meta:
+        model = Tabela_exame

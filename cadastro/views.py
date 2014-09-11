@@ -11,6 +11,8 @@ from .models import Tabela_exame
 from .forms import TexameForm
 from .models import Convenio
 from .forms import ConvenioForm
+from .models import Atendimento
+from .forms import AtendimentoForm
 
 
 
@@ -66,3 +68,8 @@ class CadastroConvenioView(CreateView):
 
 class ConvenioListView(ListView):
     model = Convenio
+
+class CadastroAtendimentoView(CreateView):
+    model = Atendimento
+    form_class = AtendimentoForm
+    template_name = 'atendimento_form.html'

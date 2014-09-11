@@ -7,6 +7,8 @@ from .models import Medico
 from .forms import MedicoForm
 from .models import Exame
 from .forms import ExameForm
+from .models import Tabela_exame
+from .forms import TexameForm
 
 
 
@@ -46,3 +48,11 @@ class CadastroExameView(CreateView):
 
 class ExameListView(ListView):
     model = Exame
+
+class CadastroTexameView(CreateView):
+    model = Tabela_exame
+    form_class = TexameForm
+    template_name = 'tabela_exames.html'
+
+class TexameListView(ListView):
+    model = Tabela_exame

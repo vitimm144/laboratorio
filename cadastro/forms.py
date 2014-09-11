@@ -3,6 +3,7 @@ from .models import Paciente
 from .models import Medico
 from .models import Exame
 from .models import Tabela_exame
+from .models import Convenio
 
 class PacienteForm(ModelForm):
     class Meta:
@@ -19,3 +20,7 @@ class ExameForm(ModelForm):
 class TexameForm(ModelForm):
     class Meta:
         model = Tabela_exame
+
+class ConvenioForm(ModelForm):
+    class Meta:
+        model = Convenio

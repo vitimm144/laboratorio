@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Medicos</h1>
+
+
+<table class="table">
+    <thead>
+        <th> Nome </th>
+        <th> CRM </th>
+        <th> Editar </th>
+        <th> Deletar </th>
+    </thead>
+    <tbody>
+    {% for medico in object_list %}
+    <tr>
+        <td><span>{{ medico.nome_medico }}</span></td>
+        <td><span>{{ medico.crm }}</span></td>
+        <td><a href="{{ medico.get_absolute_url }}" >Editar</a></td>
+        <td><a href="{{ medico.get_delete_url }}" >Delete</a></td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+{% endblock content %}

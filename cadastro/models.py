@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 
 class Paciente(models.Model):
@@ -35,10 +36,22 @@ class Paciente(models.Model):
     email = models.CharField(max_length=20, verbose_name='E-mail', null=True)
     informacao_menor = models.CharField(max_length=200, verbose_name='Informações do Menor', null=True)
 
+    def __str__(self):
+        return self.nome
+
+    class Meta:
+        ordering = ['numero_paciente']
+
 
 class Medico (models.Model):
     crm = models.CharField(max_length=10, verbose_name='CRM')
     nome_medico = models.CharField(max_length=200, verbose_name='Nome:')
+
+    def get_absolute_url(self):
+        return reverse('medico_edit', kwargs={'pk': self.pk})
+
+    def get_delete_url(self):
+        return reverse('medico_delete', kwargs={'pk': self.pk})
 
 
 class Exame(models.Model):

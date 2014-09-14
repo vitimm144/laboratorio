@@ -1,19 +1,11 @@
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
-from django.views.generic import CreateView, ListView
-from .models import Paciente
-from .forms import PacienteForm
-from .models import Medico
-from .forms import MedicoForm
-from .models import Exame
-from .forms import ExameForm
-from .models import Tabela_exame
-from .forms import TexameForm
-from .models import Convenio
-from .forms import ConvenioForm
-from .models import Atendimento
-from .forms import AtendimentoForm
+from django.utils import timezone
+from django.core.urlresolvers import reverse
 
+from django.contrib.auth.decorators import login_required
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
+from .models import Paciente, Medico, Exame, Tabela_exame, Convenio, Atendimento
+from .forms import PacienteForm, MedicoForm, ExameForm, TexameForm, ConvenioForm, AtendimentoForm
 
 
 @login_required(login_url='/login/')
@@ -26,48 +18,84 @@ class CadastroPacienteView(CreateView):
     form_class = PacienteForm
     template_name = 'paciente_form.html'
 
-    # def post(self, request, *args, **kwargs):
-    #     import ipdb; ipdb.set_trace()
-    #     return super(CadastroPacienteView, self).post(request, *args, **kwargs)
+    def post(self, request, *args, **kwargs):
+        form = PacienteForm(request.POST)
+        import ipdb; ipdb.set_trace()
+        form.clean()
+        if form.is_valid():
+            form.save()
+            return super(CadastroPacienteView, self).post(request, *args, **kwargs)
+
 
 class PacienteListView(ListView):
     model = Paciente
 
-class CadastroMedicoView(CreateView):
+
+#############################
+# Views de Medico
+#############################
+class MedicoCreate(CreateView):
     model = Medico
     form_class = MedicoForm
     template_name = 'medico_form.html'
 
-    #def post(self, request, *args, **kwargs);
-    #   import ipdb; ipdb.set_trace()
-    #   return super (CadastroMedicoView, self).post(request, *args, **kwargs)
+    def get_success_url(self):
+        return reverse('medico_list')
+
+
+class MedicoUpdate(UpdateView):
+    model = Medico
+    form_class = MedicoForm
+    template_name = 'medico_form.html'
+
+    def get_success_url(self):
+        return reverse('medico_list')
+
+
+class MedicoDelete(DeleteView):
+    model = Medico
+    # template_name_suffix = 'templates/'
+    template_name = 'medico_confirm_delete.html'
+
+    def get_success_url(self):
+        return reverse('medico_list')
+
 
 class MedicoListView(ListView):
     model = Medico
+    template_name = 'medico_list.html'
+
+##############################
 
 class CadastroExameView(CreateView):
     model = Exame
     form_class = ExameForm
     template_name = "exame.html"
 
+
 class ExameListView(ListView):
     model = Exame
+
 
 class CadastroTexameView(CreateView):
     model = Tabela_exame
     form_class = TexameForm
     template_name = 'tabela_exames.html'
 
+
 class TexameListView(ListView):
     model = Tabela_exame
+
 
 class CadastroConvenioView(CreateView):
     model = Convenio
     form_class = ConvenioForm
     template_name = 'convenio_form.html'
 
+
 class ConvenioListView(ListView):
     model = Convenio
+
 
 class CadastroAtendimentoView(CreateView):
     model = Atendimento

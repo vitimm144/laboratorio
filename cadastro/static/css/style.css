@@ -4,20 +4,16 @@
 
 }
 
-#wrap{
-	width: 900px;
-	margin: 0 auto;
-}
+
 #header{
     width:100%;
-    height: 150px;
+    height: 175px;
     background-color: #F2F2F2;
 }
 .header1{
     width:950px;
-    height: 150px;
+    height: 130px;
     margin:0 auto;
-
 }
 .logo{
     width: 220px;
@@ -33,9 +29,90 @@
     font-family: "Trebuchet", Arial, Serif;
 	font-size: 14px;
 }
+.descr_topo a{
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+}
+.descr_topo a:hover{
+    font-weight: bold;
+    color: #0000FF;
+}
+
+/***********MENU***********/
+#header .menu{
+    width: 100%;
+    height: 44px;
+    float: right;
+    margin-top: 1px;
+    margin-right: 0px;
+    background-color: #197ad9;
+}
+/*LEVEL ONE*/
+#header .menu ul.dropdown{
+    width: 950px;
+	position:relative;
+	margin:0 auto;
+	padding:0;
+	z-index:999;
+}
+#header .menu ul.dropdown li{
+	float:left;
+	padding:13px 0 12px 0;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size:16px;
+	list-style:none;
+	position:relative;
+	color: #000;
+	z-index:999;
+}
+#header .menu ul.dropdown li a{
+	text-decoration: none;
+	color: #FFF;
+	padding: 13px 10px 15px 10px;
+	width: 140px;
+	z-index:999;
+}
+#header .menu ul.dropdown li a:hover{
+	background-color:#F2F2F2;
+	color: #00F;
+	z-index:999;
+}
+/*LEVEL TWO*/
+#header .menu ul.dropdown ul {
+	visibility: hidden;
+	position: absolute;
+	top: 103%;
+	left: 0;
+	display: block;
+	background-color:#197ad9;
+	padding:5px;
+	width:155px;
+}
+#header .menu ul.dropdown ul li {
+	float:none;
+	font-size:16px;
+	border-bottom:1px solid #F2F2F2;
+	padding:10px 12px 9px 0;
+	z-index:999;
+}
+#header .menu ul.dropdown ul li a {
+	display:block;
+	padding:0 3px;
+	background:none;
+}
+#header .menu ul.dropdown ul li a:hover {
+	background:#F2F2F2;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	-ms-border-radius:5px;
+	padding:5px 8px;
+}
+
 .cad_pac{
 	width: 900px;
-	float: left;
+
 }
 .cad_pac label{
 	font-family: "Trebuchet", Arial, Serif;
@@ -54,4 +131,31 @@
 }
 .tam2{
 	width: 720px;
+}
+
+#footer{
+    position: absolute;
+    width: 100%;
+    background-color: #197ad9;
+    height: 30px;
+
+}
+.footer_interno{
+    width: 950px;
+    margin: 0 auto;
+    text-align: center;
+}
+#footer p{
+    color: #fff;
+    font-family: "Trebuchet", Arial, Serif;
+	font-size: 14px;
+	margin-top: 5px;
+}
+#footer p a{
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+}
+#footer p a:hover{
+    text-decoration: underline;
 }

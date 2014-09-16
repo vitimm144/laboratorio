@@ -7,9 +7,10 @@
   <meta http-equiv='content-Language' content='pt-BR' />
 
   <title>{% block title %}Salopar{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/funcoes.js' %}"></script>
 </head>
 <body>
   <div id="page">
@@ -19,8 +20,30 @@
                 <img src="{% static 'images/logo_salopar.png' %}">
             </div>
             <div class="descr_topo">
-                <p><b>Posto:</b> Provisório<br> <b>Usuário:</b> {{ user.username }}.</p>
+                <p><b>Posto:</b> Provisório<br>
+                   <b>Usuário:</b> {{ user.username }}.<br>
+                [ <a href="/login" class="btn-btn-danger">Sair </a>]</p>
             </div>
+        </div>
+        <div class="menu">
+            <ul class="dropdown">
+                <li><a href="\" class="btn-btn-danger">Home</a></li>
+                <li><a href="#">Cadastro</a>
+                    <ul class="submenu">
+                        <li><a href="/atendimento/new" class="btn-btn-danger">Atendimento</a></li>
+                        <li><a href="/paciente/new" class="btn-btn-danger">Paciente </a></li>
+                        <li><a href="/medico/new" class="btn-btn-danger">Médico</a></li>
+                        <li><a href="/exame/new" class="btn-btn-danger">Exames</a></li>
+                        <li><a href="/tabela_exames/new" class="btn-btn-danger">Tabela de Exames</a></li>
+                        <li><a href="/convenio/new" class="btn-btn-danger">Convenio</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Atendimento</a></li>
+                <li><a href="#">Financeiro</a></li>
+                <li><a href="#">Relatórios</a></li>
+                <li><a hrfe="#">Online</a></li>
+                <li><a href="#">Configurações</a></li>
+            </ul>
         </div>
     </div>
 
@@ -29,7 +52,11 @@
         {% block content %}
         {% endblock content %}
     </div>
-    <hr>
+    <div id="footer">
+        <div class="footer_interno">
+        <p>&copy Todos os direitos reservados | Desenvolvido por <a href="http://www.orgatecnologia.com.br" target="_blank">Orga Tecnologia</a> </p>
+        </div>
+    </div>
   </div>
 </body>
 </html>

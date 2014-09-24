@@ -13,18 +13,24 @@ def home(request):
     return render(request, 'index.html')
 
 
-class CadastroPacienteView(CreateView):
+class PacienteCreate(CreateView):
     model = Paciente
     form_class = PacienteForm
     template_name = 'paciente_form.html'
 
-    def post(self, request, *args, **kwargs):
-        form = PacienteForm(request.POST)
-        import ipdb; ipdb.set_trace()
-        form.clean()
-        if form.is_valid():
-            form.save()
-            return super(CadastroPacienteView, self).post(request, *args, **kwargs)
+    # def post(self, request, *args, **kwargs):
+    #     paciente = request.POST.dict()
+    #     paciente['numero_paciente'] = int(paciente.get('numero_paciente'))
+    #
+    #     # form = PacienteForm(paciente)
+    #     # # import ipdb; ipdb.set_trace()
+    #     # form.full_clean()
+    #     # form.clean()
+    #     if form.is_valid():
+    #         form.save()
+    #         return super(CadastroPacienteView, self).post(request, *args, **kwargs)
+
+        # return
 
 
 class PacienteListView(ListView):

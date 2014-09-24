@@ -4,14 +4,14 @@ from django.core.urlresolvers import reverse
 
 class Paciente(models.Model):
 
-    numero_paciente = models.IntegerField(verbose_name='Numero do Paciente', unique=True, auto_created=True)
+    numero_paciente = models.PositiveIntegerField(verbose_name='Numero do Paciente', unique=True)
     data_registro = models.DateField(verbose_name='Data de Registro', auto_now=True)
     nome = models.CharField(max_length=200, verbose_name='Nome')
     GENDER_CHOICES = (
         (u'M', u'Masculino'),
         (u'F', u'Feminino'),
     )
-    sexo = models.CharField(max_length=2, choices=GENDER_CHOICES, verbose_name='Sexo')
+    sexo = models.CharField(max_length=10, choices=GENDER_CHOICES, verbose_name='Sexo')
     data_nascimento = models.DateField(verbose_name='Data de Nascimento')
     nome_mae = models.CharField(max_length=200, verbose_name='Nome da Mãe')
     #TODO: pesquisar preenchimento automatico pelo site dos correios
@@ -22,7 +22,7 @@ class Paciente(models.Model):
     bairro = models.CharField(max_length=50, verbose_name='Bairro')
     cidade = models.CharField(max_length=100, verbose_name='Cidade')
     #TODO: rever uso de UF pois quase 100% dos pacientes atendidos são do Estado
-    uf = models.CharField(max_length=2, verbose_name='UF', default='RJ')
+    uf = models.CharField(max_length=10, verbose_name='UF', default='RJ')
     rg = models.CharField(max_length=12, verbose_name='RG')
     cpf = models.CharField(max_length=12, verbose_name='CPF')
     telefone = models.CharField(max_length='10', verbose_name='Telefone')
@@ -33,7 +33,7 @@ class Paciente(models.Model):
     )
     convenio_sus = models.CharField(max_length='10', choices=SUS_CHOICES, verbose_name='Conveniado SUS?', null=True)
     numero_sus = models.CharField(max_length=12, verbose_name='Numero SUS', null=True)
-    email = models.CharField(max_length=20, verbose_name='E-mail', null=True)
+    email = models.EmailField(verbose_name='E-mail', null=True, max_length=100)
     informacao_menor = models.CharField(max_length=200, verbose_name='Informações do Menor', null=True)
 
     def __str__(self):
@@ -41,6 +41,13 @@ class Paciente(models.Model):
 
     class Meta:
         ordering = ['numero_paciente']
+
+    def get_absolute_url(self):
+        return reverse('paciente_edit', kwargs={'pk': self.pk})
+
+    def get_delete_url(self):
+        return reverse('paciente_delete', kwargs={'pk': self.pk})
+
 
 
 class Medico (models.Model):

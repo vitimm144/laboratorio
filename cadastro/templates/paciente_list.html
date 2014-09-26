@@ -1,10 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
+<h1>Pacientes</h1>
 
-</body>
-</html>
+
+<table class="table">
+    <thead>
+        <th> Nome </th>
+        <th> Data de Nascimento </th>
+        <th> Nome da Mãe </th>
+        <th> Editar </th>
+        <th> Deletar </th>
+    </thead>
+    <tbody>
+    {% for paciente in object_list %}
+    <tr>
+        <td><span>{{ paciente.nome }}</span></td>
+        <td><span>{{ paciente.data_nascimento }}</span></td>
+        <td><span>{{ paciente.nome_mae }}</span></td>
+        <td><a href="{{ paciente.get_absolute_url }}" >Editar</a></td>
+        <td><a href="{{ paciente.get_delete_url }}" >Delete</a></td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+{% endblock content %}

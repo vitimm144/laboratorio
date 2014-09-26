@@ -25,13 +25,13 @@ class Paciente(models.Model):
     uf = models.CharField(max_length=10, verbose_name='UF', default='RJ')
     rg = models.CharField(max_length=12, verbose_name='RG')
     cpf = models.CharField(max_length=12, verbose_name='CPF')
-    telefone = models.CharField(max_length='10', verbose_name='Telefone')
-    celular = models.CharField(max_length='11', verbose_name='Celular')
+    telefone = models.CharField(max_length=10, verbose_name='Telefone')
+    celular = models.CharField(max_length=11, verbose_name='Celular')
     SUS_CHOICES = (
         (u'S', u'SIM'),
         (u'N', u'NÃO'),
     )
-    convenio_sus = models.CharField(max_length='10', choices=SUS_CHOICES, verbose_name='Conveniado SUS?', null=True)
+    convenio_sus = models.CharField(max_length=10, choices=SUS_CHOICES, verbose_name='Conveniado SUS?', null=True)
     numero_sus = models.CharField(max_length=12, verbose_name='Numero SUS', null=True)
     email = models.EmailField(verbose_name='E-mail', null=True, max_length=100)
     informacao_menor = models.CharField(max_length=200, verbose_name='Informações do Menor', null=True)

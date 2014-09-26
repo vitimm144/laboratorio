@@ -12,11 +12,17 @@ from .forms import PacienteForm, MedicoForm, ExameForm, TexameForm, ConvenioForm
 def home(request):
     return render(request, 'index.html')
 
+#############################
+# Views de Paciente
+#############################
 
 class PacienteCreate(CreateView):
     model = Paciente
     form_class = PacienteForm
     template_name = 'paciente_form.html'
+
+    def get_success_url(self):
+        return reverse('paciente_list')
 
     # def post(self, request, *args, **kwargs):
     #     paciente = request.POST.dict()
@@ -32,10 +38,29 @@ class PacienteCreate(CreateView):
 
         # return
 
+class PacienteUpdate(UpdateView):
+    model = Paciente
+    form_class = PacienteForm
+    template_name = 'paciente_form.html'
+
+    def get_success_url(self):
+        return reverse('paciente_list')
+
+
+class PacienteDelete(DeleteView):
+    model = Paciente
+    # template_name_suffix = 'templates/'
+    template_name = 'paciente_confirm_delete.html'
+
+    def get_success_url(self):
+        return reverse('paciente_list')
+
 
 class PacienteListView(ListView):
     model = Paciente
+    template_name = 'paciente_list.html'
 
+###############################################
 
 #############################
 # Views de Medico

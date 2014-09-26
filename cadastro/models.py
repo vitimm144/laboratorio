@@ -32,9 +32,9 @@ class Paciente(models.Model):
         (u'N', u'NÃO'),
     )
     convenio_sus = models.CharField(max_length=10, choices=SUS_CHOICES, verbose_name='Conveniado SUS?', null=True)
-    numero_sus = models.CharField(max_length=12, verbose_name='Numero SUS', null=True)
+    numero_sus = models.CharField(max_length=12, verbose_name='Numero SUS', null=True, blank=True)
     email = models.EmailField(verbose_name='E-mail', null=True, max_length=100)
-    informacao_menor = models.CharField(max_length=200, verbose_name='Informações do Menor', null=True)
+    informacao_menor = models.CharField(max_length=200, verbose_name='Informações do Menor', null=True, blank=True)
 
     def __str__(self):
         return self.nome

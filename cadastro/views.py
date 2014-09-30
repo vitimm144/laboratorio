@@ -155,7 +155,39 @@ class ConvenioListView(ListView):
     model = Convenio
 
 
-class CadastroAtendimentoView(CreateView):
+
+
+#############################
+# Views de Atendimento
+#############################
+
+class AtendimentoCreate(CreateView):
     model = Atendimento
     form_class = AtendimentoForm
     template_name = 'atendimento_form.html'
+
+    def get_success_url(self):
+        return reverse('atendimento_list')
+
+
+class AtendimentoUpdate(UpdateView):
+    model = Atendimento
+    form_class = AtendimentoForm
+    template_name = 'atendimento_form.html'
+
+    def get_success_url(self):
+        return reverse('atendimento_list')
+
+
+class AtendimentoDelete(DeleteView):
+    model = Atendimento
+    # template_name_suffix = 'templates/'
+    template_name = 'atendimento_confirm_delete.html'
+
+    def get_success_url(self):
+        return reverse('atendimento_list')
+
+
+class AtendimentoListView(ListView):
+    model = Atendimento
+    template_name = 'atendimento_list.html'

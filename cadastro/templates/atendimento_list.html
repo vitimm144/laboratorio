@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Atendimento</h1>
+
+
+<table class="table">
+    <thead>
+        <th> Numero do Atendimento </th>
+        <th> Paciente</th>
+        <th> Editar </th>
+        <th> Deletar </th>
+    </thead>
+    <tbody>
+    {% for atendimento in object_list %}
+    <tr>
+        <td><span>{{ atendimento.codigo }}</span></td>
+        <td><span>{{ atendimento.paciente }}</span></td>
+        <td><a href="{{ atendimento.get_absolute_url }}" >Editar</a></td>
+        <td><a href="{{ atendimento.get_delete_url }}" >Delete</a></td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+{% endblock content %}

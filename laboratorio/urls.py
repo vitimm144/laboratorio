@@ -4,6 +4,7 @@ from django.contrib import admin
 from cadastro.views import MedicoCreate, MedicoDelete, MedicoUpdate, MedicoListView
 from cadastro.views import PacienteListView, PacienteCreate, PacienteDelete, PacienteUpdate
 from cadastro.views import ExameCreate, ExameDelete, ExameUpdate, ExameListView
+from cadastro.views import AtendimentoCreate, AtendimentoDelete, AtendimentoUpdate, AtendimentoListView
 
 admin.autodiscover()
 
@@ -23,7 +24,10 @@ urlpatterns = patterns('',
     url(r'^exame/(?P<pk>[0-9]+)/delete/$', ExameDelete.as_view(), name='exame_delete'),
     url(r'^tabela_exames/new/$', CadastroTexameView.as_view(), name='new_tabela_exames'),
     url(r'^convenio/new/$', CadastroConvenioView.as_view(), name='new_convenio'),
-    url(r'^atendimento/new/$', CadastroAtendimentoView.as_view(), name='new_atendimento'),
+    url(r'^atendimento/new/$', AtendimentoCreate.as_view(), name='new_atendimento'),
+    url(r'^exames/$', AtendimentoListView.as_view(), name='atendimento_list'),
+    url(r'^exame/(?P<pk>[0-9]+)/$', AtendimentoUpdate.as_view(), name='atendimento_edit'),
+    url(r'^exame/(?P<pk>[0-9]+)/delete/$', AtendimentoDelete.as_view(), name='atendimento_delete'),
     (r'^login/$', 'login.views.login_user'),
     url(r'^admin/', include(admin.site.urls)),
 )

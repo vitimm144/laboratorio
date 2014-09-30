@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="post">{% csrf_token %}
+    Você tem certeza que deseja deletar o exame: "{{ object.nome_exame }}" ?
+    <input type="submit" value="Submit" />
+</form>
+{% endblock content %}

@@ -98,15 +98,42 @@ class MedicoListView(ListView):
 
 ##############################
 
-class CadastroExameView(CreateView):
+#############################
+# Views de Exame
+#############################
+
+class ExameCreate(CreateView):
     model = Exame
     form_class = ExameForm
-    template_name = "exame.html"
+    template_name = 'exame.html'
+
+    def get_success_url(self):
+        return reverse('exame_list')
+
+
+class ExameUpdate(UpdateView):
+    model = Exame
+    form_class = ExameForm
+    template_name = 'exame.html'
+
+    def get_success_url(self):
+        return reverse('exame_list')
+
+
+class ExameDelete(DeleteView):
+    model = Exame
+    # template_name_suffix = 'templates/'
+    template_name = 'exame_confirm_delete.html'
+
+    def get_success_url(self):
+        return reverse('exame_list')
 
 
 class ExameListView(ListView):
     model = Exame
+    template_name = 'exame_list.html'
 
+######################################
 
 class CadastroTexameView(CreateView):
     model = Tabela_exame

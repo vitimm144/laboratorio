@@ -1,8 +1,10 @@
 from django.conf.urls import patterns, include, url
-from cadastro.views import home, CadastroExameView, CadastroTexameView, CadastroConvenioView, CadastroAtendimentoView
+from cadastro.views import home, CadastroTexameView, CadastroConvenioView, CadastroAtendimentoView
 from django.contrib import admin
 from cadastro.views import MedicoCreate, MedicoDelete, MedicoUpdate, MedicoListView
 from cadastro.views import PacienteListView, PacienteCreate, PacienteDelete, PacienteUpdate
+from cadastro.views import ExameCreate, ExameDelete, ExameUpdate, ExameListView
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -15,7 +17,10 @@ urlpatterns = patterns('',
     url(r'^medicos/$', MedicoListView.as_view(), name='medico_list'),
     url(r'^medico/(?P<pk>[0-9]+)/$', MedicoUpdate.as_view(), name='medico_edit'),
     url(r'^medico/(?P<pk>[0-9]+)/delete/$', MedicoDelete.as_view(), name='medico_delete'),
-    url(r'^exame/new/$', CadastroExameView.as_view(), name='new_exame'),
+    url(r'^exame/new/$', ExameCreate.as_view(), name='new_exame'),
+    url(r'^exames/$', ExameListView.as_view(), name='exame_list'),
+    url(r'^exame/(?P<pk>[0-9]+)/$', ExameUpdate.as_view(), name='exame_edit'),
+    url(r'^exame/(?P<pk>[0-9]+)/delete/$', ExameDelete.as_view(), name='exame_delete'),
     url(r'^tabela_exames/new/$', CadastroTexameView.as_view(), name='new_tabela_exames'),
     url(r'^convenio/new/$', CadastroConvenioView.as_view(), name='new_convenio'),
     url(r'^atendimento/new/$', CadastroAtendimentoView.as_view(), name='new_atendimento'),

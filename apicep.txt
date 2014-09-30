@@ -1,0 +1,39 @@
+API CEP
+
+ <script>
+    function consultacep(cep){
+      cep = cep.replace(/\D/g,"")
+      url="http://cep.correiocontrol.com.br/"+cep+".js"
+      s=document.createElement('script')
+      s.setAttribute('charset','utf-8')
+      s.src=url
+      document.querySelector('head').appendChild(s)
+    }
+    function correiocontrolcep(valor){
+      if (valor.erro) {
+        alert('Cep não encontrado');       
+        return;
+      };
+      document.getElementById('logradouro').value=valor.logradouro
+      document.getElementById('bairro').value=valor.bairro
+      document.getElementById('localidade').value=valor.localidade
+      document.getElementById('uf').value=valor.uf
+    }
+    </script>
+
+<form>
+    <fieldset>
+        <legend>Consulta CEP</legend>
+        <label>CEP</label>
+        <input id="cep" onblur="consultacep(this.value)" /><br/>
+        <label>Logradouro</label>
+        <input id="logradouro" /><br/>
+        <label>Bairro</label>
+        <input id="bairro" /><br/>
+        <label>Cidade</label>
+        <input id="localidade" /><br/>
+        <label>UF</label>
+        <input id="uf" />
+    </fieldset>  
+  </form>
+

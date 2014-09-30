@@ -1,10 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
+<h1>Exames</h1>
 
-</body>
-</html>
+
+<table class="table">
+    <thead>
+        <th> Código </th>
+        <th> Exame </th>
+        <th> Editar </th>
+        <th> Deletar </th>
+    </thead>
+    <tbody>
+    {% for exame in object_list %}
+    <tr>
+        <td><span>{{ exame.codigo_exame }}</span></td>
+        <td><span>{{ exame.nome_exame }}</span></td>
+        <td><a href="{{ exame.get_absolute_url }}" >Editar</a></td>
+        <td><a href="{{ exame.get_delete_url }}" >Delete</a></td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+<span>Cadastrar novo exame, <a href="/exame/new">clique aqui</a></span>
+
+{% endblock content %}

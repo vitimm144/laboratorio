@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Tabelas de exames</h1>
+
+
+<table class="table">
+    <thead>
+        <th> Nome </th>
+        <th> Exames </th>
+        <th> Editar </th>
+        <th> Deletar </th>
+    </thead>
+    <tbody>
+    {% for texame in object_list %}
+    <tr>
+        <td><span>{{ texame.nome_tabela }}</span></td>
+        <td><span>{{ texame.exames }}</span></td>
+        <td><a href="{{ texame.get_absolute_url }}" >Editar</a></td>
+        <td><a href="{{ texame.get_delete_url }}" >Delete</a></td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+{% endblock content %}

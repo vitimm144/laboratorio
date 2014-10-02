@@ -66,17 +66,34 @@ class Exame(models.Model):
     nome_exame = models.CharField(max_length=100, verbose_name='Nome do Exame')
     ch = models.CharField(max_length=5, verbose_name='Valor de CH')
 
+    def get_absolute_url(self):
+        return reverse('exame_edit', kwargs={'pk': self.pk})
+
+    def get_delete_url(self):
+        return reverse('exame_delete', kwargs={'pk': self.pk})
 
 
 class Tabela_exame (models.Model):
     nome_tabela = models.CharField(max_length=200, verbose_name='Nome da Tabela de Exames')
     exames = models.ManyToManyField('Exame', related_name='exames')
 
+    def get_absolute_url(self):
+        return reverse('tabela_exame_edit', kwargs={'pk': self.pk})
+
+    def get_delete_url(self):
+        return reverse('tabela_exame_delete', kwargs={'pk': self.pk})
+
 
 class Convenio (models.Model):
     nome_convenio = models.CharField(max_length=100, verbose_name='Nome do Convenio')
     tipo_tabela = models.ForeignKey('Tabela_exame', verbose_name='Tipo de Tabela')
     precificacao = models.CharField(max_length=10, verbose_name='Precificação')
+
+    def get_absolute_url(self):
+        return reverse('convenio_edit', kwargs={'pk': self.pk})
+
+    def get_delete_url(self):
+        return reverse('convenio_delete', kwargs={'pk': self.pk})
 
 
 class Atendimento(models.Model):
@@ -99,6 +116,11 @@ class Atendimento(models.Model):
     #TODO:criar uma senha randomica para acesso do paciente para os laudos via internet
     senha = models.CharField(max_length=8, verbose_name='Senha internet')
 
+    def get_absolute_url(self):
+        return reverse('atendimento_edit', kwargs={'pk': self.pk})
+
+    def get_delete_url(self):
+        return reverse('atendimento_delete', kwargs={'pk': self.pk})
 
 class Atendimento_exame(models.Model):
     convenios = models.ForeignKey('Convenio')

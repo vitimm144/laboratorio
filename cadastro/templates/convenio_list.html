@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Convênios</h1>
+
+
+<table class="table">
+    <thead>
+        <th> Nome </th>
+        <th> Tipo de tabela </th>
+        <th> Precificação </th>
+        <th> Editar </th>
+        <th> Deletar </th>
+    </thead>
+    <tbody>
+    {% for convenio in object_list %}
+    <tr>
+        <td><span>{{ convenio.nome_convenio }}</span></td>
+        <td><span>{{ convenio.tipo_tabela}}</span></td>
+        <td><span>{{ convenio.precificacao}}</span></td>
+        <td><a href="{{ convenio.get_absolute_url }}" >Editar</a></td>
+        <td><a href="{{ convenio.get_delete_url }}" >Delete</a></td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+{% endblock content %}

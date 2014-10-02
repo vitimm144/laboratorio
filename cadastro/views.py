@@ -15,7 +15,6 @@ def home(request):
 #############################
 # Views de Paciente
 #############################
-
 class PacienteCreate(CreateView):
     model = Paciente
     form_class = PacienteForm
@@ -23,20 +22,6 @@ class PacienteCreate(CreateView):
 
     def get_success_url(self):
         return reverse('paciente_list')
-
-    # def post(self, request, *args, **kwargs):
-    #     paciente = request.POST.dict()
-    #     paciente['numero_paciente'] = int(paciente.get('numero_paciente'))
-    #
-    #     # form = PacienteForm(paciente)
-    #     # # import ipdb; ipdb.set_trace()
-    #     # form.full_clean()
-    #     # form.clean()
-    #     if form.is_valid():
-    #         form.save()
-    #         return super(CadastroPacienteView, self).post(request, *args, **kwargs)
-
-        # return
 
 class PacienteUpdate(UpdateView):
     model = Paciente
@@ -101,11 +86,10 @@ class MedicoListView(ListView):
 #############################
 # Views de Exame
 #############################
-
 class ExameCreate(CreateView):
     model = Exame
     form_class = ExameForm
-    template_name = 'exame.html'
+    template_name = 'exame_form.html'
 
     def get_success_url(self):
         return reverse('exame_list')
@@ -114,7 +98,7 @@ class ExameCreate(CreateView):
 class ExameUpdate(UpdateView):
     model = Exame
     form_class = ExameForm
-    template_name = 'exame.html'
+    template_name = 'exame_form.html'
 
     def get_success_url(self):
         return reverse('exame_list')
@@ -135,26 +119,69 @@ class ExameListView(ListView):
 
 ######################################
 
-class CadastroTexameView(CreateView):
+
+class TexameCreate(CreateView):
     model = Tabela_exame
     form_class = TexameForm
-    template_name = 'tabela_exames.html'
+    template_name = 'tabela_exame_form.html'
+
+    def get_success_url(self):
+        return reverse('tabela_exame_list')
+
+
+class TexameUpdate(UpdateView):
+    model = Tabela_exame
+    form_class = TexameForm
+    template_name = 'tabela_exame_form.html'
+
+    def get_success_url(self):
+        return reverse('tabela_exame_list')
+
+
+class TexameDelete(DeleteView):
+    model = Tabela_exame
+    template_name = 'tabela_exame_confirm_delete.html'
+
+    def get_success_url(self):
+        return reverse('tabela_exame_list')
 
 
 class TexameListView(ListView):
     model = Tabela_exame
+    template_name = 'tabela_exame_list.html'
+
+#########
 
 
-class CadastroConvenioView(CreateView):
+class ConvenioCreate(CreateView):
     model = Convenio
     form_class = ConvenioForm
     template_name = 'convenio_form.html'
 
+    def get_success_url(self):
+        return reverse('convenio_list')
+
+
+class ConvenioUpdate(UpdateView):
+    model = Convenio
+    form_class = ConvenioForm
+    template_name = 'convenio_form.html'
+
+    def get_success_url(self):
+        return reverse('convenio_list')
+
+
+class ConvenioDelete(DeleteView):
+    model = Convenio
+    template_name = 'convenio_confirm_delete.html'
+
+    def get_success_url(self):
+        return reverse('convenio_list')
+
 
 class ConvenioListView(ListView):
     model = Convenio
-
-
+    template_name = 'convenio_list.html'
 
 
 #############################

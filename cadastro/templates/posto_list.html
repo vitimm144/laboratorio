@@ -10,11 +10,11 @@
         <th> Deletar </th>
     </thead>
     <tbody>
-    {% for atendimento in object_list %}
+    {% for posto in object_list %}
     <tr>
         <td><span>{{ posto.nome_posto }}</span></td>
-        <td><a href="{{ atendimento.get_absolute_url }}" >Editar</a></td>
-        <td><a href="{{ atendimento.get_delete_url }}" >Delete</a></td>
+        <td><a href="{{ posto.get_absolute_url }}" >Editar</a></td>
+        <td><a href="{{ posto.get_delete_url }}" >Delete</a></td>
     </tr>
     {% endfor %}
 

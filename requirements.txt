@@ -10,3 +10,4 @@ markdown
 django-filter
 django-bootstrap3
 ipdb
+-e git+https://github.com/theatlantic/django-chosen.git#egg=django-chosen

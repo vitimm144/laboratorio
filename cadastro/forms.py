@@ -1,5 +1,6 @@
 from django.forms import ModelForm
 from .models import Paciente, Medico, Exame, Tabela_exame, Convenio, Atendimento
+from chosen.widgets import ChosenSelect
 
 
 class PacienteForm(ModelForm):
@@ -36,3 +37,6 @@ class AtendimentoForm(ModelForm):
     class Meta:
         model = Atendimento
         fields = '__all__'
+        widgets = {
+            'paciente': ChosenSelect(overlay='Choose'),
+        }

@@ -1,5 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
+{% block extrastyle %}
+{{ block.super }}
+{{ form.media.css }}
+{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+{{ form.media.js }}
+{% endblock %}
 <div id="wrap">
 	<div><h1>Cadastro de Atendimento</h1></div>
 	<form class="cad_atend" action="." method="post">

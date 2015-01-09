@@ -8,3 +8,9 @@ class Posto(models.Model):
     endereco = models.CharField(max_length=200, verbose_name='Endereço')
     prefixo = models.CharField(max_length=10, verbose_name='Prefixo')
 
+    def get_absolute_url(self):
+        return reverse('posto_edit', kwargs={'pk': self.pk})
+
+    def get_delete_url(self):
+        return reverse('posto_delete', kwargs={'pk': self.pk})
+

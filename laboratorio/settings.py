@@ -39,7 +39,7 @@ INSTALLED_APPS = (
     'login',
     'cadastro',
     'bootstrap3',
-
+    'configuracoes',
 )
 
 MIDDLEWARE_CLASSES = (

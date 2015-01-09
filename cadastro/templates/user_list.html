@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
+<h1>Usuário</h1>
 
-</body>
-</html>
+
+<table class="table">
+    <thead>
+        <th> Nome: </th>
+        <th> e-mail</th>
+        <th> Editar </th>
+        <th> Deletar </th>
+    </thead>
+    <tbody>
+    {% for user in object_list %}
+    <tr>
+        <td><span>{{ user.username }}</span></td>
+        <td><span>{{ user.email }}</span></td>
+        <td><a href="{{ user.get_absolute_url }}" >Editar</a></td>
+        <td><a href="{{ user.get_delete_url }}" >Delete</a></td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+{% endblock content %}

@@ -7,6 +7,7 @@ from cadastro.views import ExameCreate, ExameDelete, ExameUpdate, ExameListView
 from cadastro.views import AtendimentoCreate, AtendimentoDelete, AtendimentoUpdate, AtendimentoListView
 from cadastro.views import ConvenioCreate, ConvenioDelete, ConvenioListView, ConvenioUpdate
 from cadastro.views import TexameCreate, TexameDelete, TexameUpdate, TexameListView
+from configuracoes.views import PostoCreate, PostoListView, PostoUpdate, PostoDelete
 
 
 admin.autodiscover()
@@ -37,6 +38,10 @@ urlpatterns = patterns('',
     url(r'^atendimentos/$', AtendimentoListView.as_view(), name='atendimento_list'),
     url(r'^atendimento/(?P<pk>[0-9]+)/$', AtendimentoUpdate.as_view(), name='atendimento_edit'),
     url(r'^atendimento/(?P<pk>[0-9]+)/delete/$', AtendimentoDelete.as_view(), name='atendimento_delete'),
+    url(r'^posto/new/$', PostoCreate.as_view(), name='posto_new'),
+    url(r'^posto/$', PostoListView.as_view(), name='posto_list'),
+    url(r'^posto/(?P<pk>[0-9]+)/$', PostoUpdate.as_view(), name='posto_edit'),
+    url(r'^posto/(?P<pk>[0-9]+)/delete/$', PostoDelete.as_view(), name='posto_delete'),
     (r'^login/$', 'login.views.login_user'),
     url(r'^admin/', include(admin.site.urls)),
 )

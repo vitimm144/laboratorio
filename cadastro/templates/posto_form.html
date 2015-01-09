@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
+<div id="wrap">
+	<div><h1>Cadastro de Posto de Coleta</h1></div>
+	<form class="cad_pac" action="." method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
 
-</body>
-</html>
+        <input type="submit" value="Submit">
+	</form>	
+</div>
+{% endblock content %}

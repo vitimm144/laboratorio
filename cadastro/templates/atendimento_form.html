@@ -10,12 +10,70 @@
 {{ form.media.js }}
 {% endblock %}
 <div id="wrap">
-	<div><h1>Cadastro de Atendimento</h1></div>
-	<form class="cad_pac" action="." method="post">
+    <form class="cad_pac" action="." method="post">
+
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form.non_field_errors }}
+        <p>
+            {{ form.codigo.errors }}
+            <label for="{{ form.codigo.id_for_label }}">Codigo:</label>
+            {{ form.codigo }}
+        </p>
+        <p>
+            {{ form.paciente.errors }}
+            <label for="{{ form.paciente.id_for_label }}">Paciente:</label>
+            {{ form.paciente }}
+            <button type="button" id="paciente_button"> + </button>
+        </p>
+        <p>
+            {{ form.medico.errors }}
+            <label for="{{ form.medico.id_for_label }}">Médico:</label>
+            {{ form.medico }}
+        </p>
+        <p>
+            {{ form.atendimento_exames.errors }}
+            <label for="{{ form.atendimento_exames.id_for_label }}">Exâmes:</label>
+            {{ form.atendimento_exames }}
+        </p>
+        <p>
+            {{ form.data_resultado.errors }}
+            <label for="{{ form.data_resultado.id_for_label }}">Resultado:</label>
+            {{ form.data_resultado }}
+        </p>
+        <p>
+            {{ form.observacao.errors }}
+            <label for="{{ form.observacao.id_for_label }}">Observação:</label>
+            {{ form.observacao }}
+        </p>
+        <p>
+            {{ form.peso.errors }}
+            <label for="{{ form.peso.id_for_label }}">Peso:</label>
+            {{ form.peso }}
+        </p>
+        <p>
+            {{ form.altura.errors }}
+            <label for="{{ form.altura.id_for_label }}">Altura:</label>
+            {{ form.altura }}
+        </p>
+        <p>
+            {{ form.dum.errors }}
+            <label for="{{ form.dum.id_for_label }}">DUM:</label>
+            {{ form.dum }}
+        </p>
+        <p>
+            {{ form.medicamentos.errors }}
+            <label for="{{ form.medicamentos.id_for_label }}">Medicamentos:</label>
+            {{ form.medicamentos }}
+        </p>
+        <p>
+            {{ form.senha.errors }}
+            <label for="{{ form.senha.id_for_label }}">Senha:</label>
+            {{ form.senha }}
+        </p>
+
 
         <input type="submit" value="Submit">
-	</form>	
+    </form>
+    <div><h1>Cadastro de Atendimento</h1></div>
 </div>
 {% endblock content %}

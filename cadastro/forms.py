@@ -34,9 +34,14 @@ class ConvenioForm(ModelForm):
 
 
 class AtendimentoForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(AtendimentoForm, self).__init__(*args, **kwargs)
+        self.fields['paciente'].empty_label = ""
+
     class Meta:
         model = Atendimento
         fields = '__all__'
         widgets = {
-            'paciente': ChosenSelect(overlay='Choose'),
+            'paciente': ChosenSelect(overlay="Choose")
         }

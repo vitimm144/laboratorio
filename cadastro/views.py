@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 
 from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
+from django.views.generic.edit import FormView
 from .models import Paciente, Medico, Exame, Tabela_exame, Convenio, Atendimento
 from .forms import PacienteForm, MedicoForm, ExameForm, TexameForm, ConvenioForm, AtendimentoForm
 
@@ -206,8 +207,17 @@ class ConvenioListView(ListView):
 #############################
 # Views de Atendimento
 #############################
+from django.core.urlresolvers import reverse_lazy
 
-class AtendimentoCreate(CreateView, AjaxTemplateMixin):
+
+class PacienteView(FormView):
+    template_name = 'paciente_form_inner.html'
+    form_class = PacienteForm
+    success_url = reverse_lazy('atendimento_new')
+    # success_message = "Way to go!"
+
+
+class AtendimentoCreate(CreateView):
     model = Atendimento
     form_class = AtendimentoForm
     template_name = 'atendimento_form.html'

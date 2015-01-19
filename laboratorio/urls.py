@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from cadastro.views import home
 from django.contrib import admin
 from cadastro.views import MedicoCreate, MedicoDelete, MedicoUpdate, MedicoListView
-from cadastro.views import PacienteListView, PacienteCreate, PacienteDelete, PacienteUpdate
+from cadastro.views import PacienteListView, PacienteCreate, PacienteDelete, PacienteUpdate, PacienteView
 from cadastro.views import ExameCreate, ExameDelete, ExameUpdate, ExameListView
 from cadastro.views import AtendimentoCreate, AtendimentoDelete, AtendimentoUpdate, AtendimentoListView
 from cadastro.views import ConvenioCreate, ConvenioDelete, ConvenioListView, ConvenioUpdate
@@ -16,6 +16,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^$', home, name='home'),
     url(r'^paciente/new/$', PacienteCreate.as_view(), name='paciente_new'),
+    url(r'^paciente/view/$', PacienteView.as_view(), name='paciente_view'),
     url(r'^pacientes/$', PacienteListView.as_view(), name='paciente_list'),
     url(r'^paciente/(?P<pk>[0-9]+)/$', PacienteUpdate.as_view(), name='paciente_edit'),
     url(r'^paciente/(?P<pk>[0-9]+)/delete/$', PacienteDelete.as_view(), name='paciente_delete'),

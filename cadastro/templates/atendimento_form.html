@@ -9,9 +9,61 @@
 {{ block.super }}
 {{ form.media.js }}
 {% endblock %}
-<div id="wrap">
-    <form class="cad_pac" action="." method="post">
+<div class="modal fade" id="form-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div id="form-modal-body" class="modal-body">
 
+      </div>
+      <div class="modal-footer">
+         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% block js %}
+    <script>
+
+        var formAjaxSubmit = function(form, modal) {
+            $(form).submit(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: $(this).attr('method'),
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    success: function (xhr, ajaxOptions, thrownError) {
+                        if ( $(xhr).find('.has-error').length > 0 ) {
+                            $(modal).find('.modal-body').html(xhr);
+                            formAjaxSubmit(form, modal);
+                        } else {
+                            $(modal).modal('toggle');
+                        }
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        // handle response errors here
+                    }
+                });
+            });
+        }
+        $("#paciente_button").click(function(ev) { // for each edit contact url
+             $('#form-modal-body').load('/test-form/', function () {
+                $('#form-modal').modal('toggle');
+                formAjaxSubmit('#form-modal-body form', '#form-modal');
+            1
+
+             });
+        });
+    </script>
+{% endblock js %}
+    <form class="cad_pac" action="." method="post">
+        <div><h1>Cadastro de Atendimento</h1></div>
         {% csrf_token %}
         {{ form.non_field_errors }}
         <p>
@@ -23,7 +75,8 @@
             {{ form.paciente.errors }}
             <label for="{{ form.paciente.id_for_label }}">Paciente:</label>
             {{ form.paciente }}
-            <button type="button" id="paciente_button"> + </button>
+            <!--<button type="button" id="paciente_button"> + </button>-->
+            <a data-toggle="modal" href="{% url 'paciente_new' %}" data-target="#form-modal">Click me</a>
         </p>
         <p>
             {{ form.medico.errors }}
@@ -74,6 +127,6 @@
 
         <input type="submit" value="Submit">
     </form>
-    <div><h1>Cadastro de Atendimento</h1></div>
+
 </div>
 {% endblock content %}

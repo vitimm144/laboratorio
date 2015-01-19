@@ -8,9 +8,25 @@ from .models import Paciente, Medico, Exame, Tabela_exame, Convenio, Atendimento
 from .forms import PacienteForm, MedicoForm, ExameForm, TexameForm, ConvenioForm, AtendimentoForm
 
 
+class AjaxTemplateMixin(object):
+
+    def dispatch(self, request, *args, **kwargs):
+        if not hasattr(self, 'ajax_template_name'):
+            split = self.template_name.split('.html')
+            split[-1] = '_inner'
+            split.append('.html')
+            self.ajax_template_name = ''.join(split)
+
+        if request.is_ajax():
+            self.template_name = self.ajax_template_name
+
+        return super(AjaxTemplateMixin, self).dispatch(request, *args, **kwargs)
+
+
 @login_required(login_url='/login/')
 def home(request):
     return render(request, 'index.html')
+
 
 #############################
 # Views de Paciente
@@ -22,6 +38,7 @@ class PacienteCreate(CreateView):
 
     def get_success_url(self):
         return reverse('paciente_list')
+
 
 class PacienteUpdate(UpdateView):
     model = Paciente
@@ -46,6 +63,7 @@ class PacienteListView(ListView):
     template_name = 'paciente_list.html'
 
 ###############################################
+
 
 #############################
 # Views de Medico
@@ -82,6 +100,7 @@ class MedicoListView(ListView):
     template_name = 'medico_list.html'
 
 ##############################
+
 
 #############################
 # Views de Exame
@@ -188,7 +207,7 @@ class ConvenioListView(ListView):
 # Views de Atendimento
 #############################
 
-class AtendimentoCreate(CreateView):
+class AtendimentoCreate(CreateView, AjaxTemplateMixin):
     model = Atendimento
     form_class = AtendimentoForm
     template_name = 'atendimento_form.html'

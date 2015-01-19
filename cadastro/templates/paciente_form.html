@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
-<div id="wrap">
-	<div><h1>Cadastro de Paciente</h1></div>
-	<form class="cad_pac" action="." method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
+{% include 'paciente_form_inner.html' %}
+<!--<div id="wrap">-->
+	<!--<div><h1>Cadastro de Paciente</h1></div>-->
+	<!--<form class="cad_pac" action="." method="post">-->
+        <!--{% csrf_token %}-->
+        <!--{{ form.as_p }}-->
 
-        <input type="submit" value="Submit">
-	</form>
+        <!--<input type="submit" value="Submit">-->
+	<!--</form>-->
 
-    <span>Pacientes cadastrados, <a href="/pacientes">clique aqui</a></span>
-</div>
+    <!--<span>Pacientes cadastrados, <a href="/pacientes">clique aqui</a></span>-->
+<!--</div>-->
 {% endblock content %}

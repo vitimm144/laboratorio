@@ -208,13 +208,16 @@ class ConvenioListView(ListView):
 # Views de Atendimento
 #############################
 from django.core.urlresolvers import reverse_lazy
+from django.contrib.messages.views import SuccessMessageMixin
 
 
-class PacienteView(FormView):
+class PacienteView(CreateView):
+    model = Paciente
     template_name = 'paciente_form_inner.html'
     form_class = PacienteForm
-    success_url = reverse_lazy('atendimento_new')
-    # success_message = "Way to go!"
+
+    def get_success_url(self):
+        return reverse_lazy('atendimento_new')
 
 
 class AtendimentoCreate(CreateView):

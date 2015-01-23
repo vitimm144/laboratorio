@@ -16,7 +16,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^$', home, name='home'),
     url(r'^paciente/new/$', PacienteCreate.as_view(), name='paciente_new'),
-    url(r'^paciente/view/$', PacienteView.as_view(), name='paciente_view'),
+    url(r'^atendimento_paciente/new/$', PacienteView.as_view(), name='atendimento_paciente_new'),
     url(r'^pacientes/$', PacienteListView.as_view(), name='paciente_list'),
     url(r'^paciente/(?P<pk>[0-9]+)/$', PacienteUpdate.as_view(), name='paciente_edit'),
     url(r'^paciente/(?P<pk>[0-9]+)/delete/$', PacienteDelete.as_view(), name='paciente_delete'),

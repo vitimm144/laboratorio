@@ -54,6 +54,9 @@ class Medico (models.Model):
     crm = models.CharField(max_length=10, verbose_name='CRM')
     nome_medico = models.CharField(max_length=200, verbose_name='Nome:')
 
+    def __str__(self):
+        return self.nome_medico
+
     def get_absolute_url(self):
         return reverse('medico_edit', kwargs={'pk': self.pk})
 
@@ -66,6 +69,9 @@ class Exame(models.Model):
     nome_exame = models.CharField(max_length=100, verbose_name='Nome do Exame')
     ch = models.CharField(max_length=5, verbose_name='Valor de CH')
 
+    def __str__(self):
+        return self.nome_exame
+
     def get_absolute_url(self):
         return reverse('exame_edit', kwargs={'pk': self.pk})
 
@@ -76,6 +82,9 @@ class Exame(models.Model):
 class Tabela_exame (models.Model):
     nome_tabela = models.CharField(max_length=200, verbose_name='Nome da Tabela de Exames')
     exames = models.ManyToManyField('Exame', related_name='exames')
+
+    def __str__(self):
+        return self.nome_tabela
 
     def get_absolute_url(self):
         return reverse('tabela_exame_edit', kwargs={'pk': self.pk})
@@ -88,6 +97,9 @@ class Convenio (models.Model):
     nome_convenio = models.CharField(max_length=100, verbose_name='Nome do Convenio')
     tipo_tabela = models.ForeignKey('Tabela_exame', verbose_name='Tipo de Tabela')
     precificacao = models.CharField(max_length=10, verbose_name='Precificação')
+
+    def __str__(self):
+        return self.nome_convenio
 
     def get_absolute_url(self):
         return reverse('convenio_edit', kwargs={'pk': self.pk})
@@ -121,6 +133,7 @@ class Atendimento(models.Model):
 
     def get_delete_url(self):
         return reverse('atendimento_delete', kwargs={'pk': self.pk})
+
 
 class Atendimento_exame(models.Model):
     convenios = models.ForeignKey('Convenio')

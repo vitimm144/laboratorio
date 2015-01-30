@@ -1,8 +1,18 @@
-<!--{% load crispy_forms_tags %}-->
-<div class="row">
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">Cadastro de paciente</h4>
+</div>
+<div id="form-modal-body" class="modal-body">
     <form class="form" action="{% url 'atendimento_paciente_new' %}" method="post">
         {% csrf_token %}
+        {{ form.non_field_errors }}
         {{ form.as_p }}
-        <input type="submit" class="btn btn-submit ">
+
+        <input data-toggle="modal" data-target="#form-modal" type="submit" class="btn btn-submit ">
     </form>
-</div><se></se>
+</div>
+    <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+</div>

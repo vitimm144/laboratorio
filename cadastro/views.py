@@ -3,8 +3,7 @@ from django.utils import timezone
 from django.core.urlresolvers import reverse
 
 from django.contrib.auth.decorators import login_required
-from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
-from django.views.generic.edit import FormView
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from .models import Paciente, Medico, Exame, Tabela_exame, Convenio, Atendimento
 from .forms import PacienteForm, MedicoForm, ExameForm, TexameForm, ConvenioForm, AtendimentoForm
 
@@ -207,17 +206,13 @@ class ConvenioListView(ListView):
 #############################
 # Views de Atendimento
 #############################
-from django.core.urlresolvers import reverse_lazy
-from django.contrib.messages.views import SuccessMessageMixin
-
-
 class PacienteView(CreateView):
     model = Paciente
     template_name = 'paciente_form_inner.html'
     form_class = PacienteForm
 
     def get_success_url(self):
-        return reverse_lazy('atendimento_new')
+        return reverse('atendimento_new')
 
 
 class AtendimentoCreate(CreateView):

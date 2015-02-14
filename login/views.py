@@ -4,6 +4,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 from login.form import UserForm
 
@@ -23,10 +24,17 @@ def login_user(request):
     return render_to_response('login.html', context_instance=RequestContext(request))
 
 
+class LoginRequiredMixin(object):
+    @classmethod
+    def as_view(cls, **initkwargs):
+        view = super(LoginRequiredMixin, cls).as_view(**initkwargs)
+        return login_required(view)
+
+
 #############################
 # Views de Cadastro de Usuário
 #############################
-class UserCreate(CreateView):
+class UserCreate(LoginRequiredMixin, CreateView):
     model = User
     form_class = UserForm
     template_name = 'user_form.html'
@@ -35,7 +43,7 @@ class UserCreate(CreateView):
         return reverse('user_list')
 
 
-class UserUpdate(UpdateView):
+class UserUpdate(LoginRequiredMixin, UpdateView):
     model = User
     form_class = UserForm
     template_name = 'user_form.html'
@@ -44,7 +52,7 @@ class UserUpdate(UpdateView):
         return reverse('user_list')
 
 
-class UserDelete(DeleteView):
+class UserDelete(LoginRequiredMixin, DeleteView):
     model = User
     # template_name_suffix = 'templates/'
     template_name = 'user_confirm_delete.html'
@@ -53,7 +61,7 @@ class UserDelete(DeleteView):
         return reverse('user_list')
 
 
-class UserListView(ListView):
+class UserListView(LoginRequiredMixin, ListView):
     model = User
     template_name = 'user_list.html'
 

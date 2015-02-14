@@ -51,6 +51,8 @@ urlpatterns = patterns('',
     url(r'^user/(?P<pk>[0-9]+)/$', UserUpdate.as_view(), name='user_edit'),
     url(r'^user/(?P<pk>[0-9]+)/delete/$', UserDelete.as_view(), name='user_delete'),
     (r'^login/$', 'login.views.login_user'),
+
+    (r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
     url(r'^admin/', include(admin.site.urls)),
 )
 

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.utils import timezone
 from django.core.urlresolvers import reverse
-
+from login.views import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from .models import Paciente, Medico, Exame, Tabela_exame, Convenio, Atendimento
@@ -31,7 +31,7 @@ def home(request):
 #############################
 # Views de Paciente
 #############################
-class PacienteCreate(CreateView):
+class PacienteCreate(LoginRequiredMixin, CreateView):
     model = Paciente
     form_class = PacienteForm
     template_name = 'paciente_form.html'
@@ -40,7 +40,7 @@ class PacienteCreate(CreateView):
         return reverse('paciente_list')
 
 
-class PacienteUpdate(UpdateView):
+class PacienteUpdate(LoginRequiredMixin, UpdateView):
     model = Paciente
     form_class = PacienteForm
     template_name = 'paciente_form.html'
@@ -49,7 +49,7 @@ class PacienteUpdate(UpdateView):
         return reverse('paciente_list')
 
 
-class PacienteDelete(DeleteView):
+class PacienteDelete(LoginRequiredMixin, DeleteView):
     model = Paciente
     # template_name_suffix = 'templates/'
     template_name = 'paciente_confirm_delete.html'
@@ -58,7 +58,7 @@ class PacienteDelete(DeleteView):
         return reverse('paciente_list')
 
 
-class PacienteListView(ListView):
+class PacienteListView(LoginRequiredMixin, ListView):
     model = Paciente
     template_name = 'paciente_list.html'
 
@@ -68,7 +68,7 @@ class PacienteListView(ListView):
 #############################
 # Views de Medico
 #############################
-class MedicoCreate(CreateView):
+class MedicoCreate(LoginRequiredMixin, CreateView):
     model = Medico
     form_class = MedicoForm
     template_name = 'medico_form.html'
@@ -77,7 +77,7 @@ class MedicoCreate(CreateView):
         return reverse('medico_list')
 
 
-class MedicoUpdate(UpdateView):
+class MedicoUpdate(LoginRequiredMixin, UpdateView):
     model = Medico
     form_class = MedicoForm
     template_name = 'medico_form.html'
@@ -86,7 +86,7 @@ class MedicoUpdate(UpdateView):
         return reverse('medico_list')
 
 
-class MedicoDelete(DeleteView):
+class MedicoDelete(LoginRequiredMixin, DeleteView):
     model = Medico
     # template_name_suffix = 'templates/'
     template_name = 'medico_confirm_delete.html'
@@ -95,7 +95,7 @@ class MedicoDelete(DeleteView):
         return reverse('medico_list')
 
 
-class MedicoListView(ListView):
+class MedicoListView(LoginRequiredMixin, ListView):
     model = Medico
     template_name = 'medico_list.html'
 
@@ -105,7 +105,7 @@ class MedicoListView(ListView):
 #############################
 # Views de Exame
 #############################
-class ExameCreate(CreateView):
+class ExameCreate(LoginRequiredMixin, CreateView):
     model = Exame
     form_class = ExameForm
     template_name = 'exame_form.html'
@@ -114,7 +114,7 @@ class ExameCreate(CreateView):
         return reverse('exame_list')
 
 
-class ExameUpdate(UpdateView):
+class ExameUpdate(LoginRequiredMixin, UpdateView):
     model = Exame
     form_class = ExameForm
     template_name = 'exame_form.html'
@@ -123,7 +123,7 @@ class ExameUpdate(UpdateView):
         return reverse('exame_list')
 
 
-class ExameDelete(DeleteView):
+class ExameDelete(LoginRequiredMixin, DeleteView):
     model = Exame
     # template_name_suffix = 'templates/'
     template_name = 'exame_confirm_delete.html'
@@ -132,14 +132,14 @@ class ExameDelete(DeleteView):
         return reverse('exame_list')
 
 
-class ExameListView(ListView):
+class ExameListView(LoginRequiredMixin, ListView):
     model = Exame
     template_name = 'exame_list.html'
 
 ######################################
 
 
-class TexameCreate(CreateView):
+class TexameCreate(LoginRequiredMixin, CreateView):
     model = Tabela_exame
     form_class = TexameForm
     template_name = 'tabela_exame_form.html'
@@ -148,7 +148,7 @@ class TexameCreate(CreateView):
         return reverse('tabela_exame_list')
 
 
-class TexameUpdate(UpdateView):
+class TexameUpdate(LoginRequiredMixin, UpdateView):
     model = Tabela_exame
     form_class = TexameForm
     template_name = 'tabela_exame_form.html'
@@ -157,7 +157,7 @@ class TexameUpdate(UpdateView):
         return reverse('tabela_exame_list')
 
 
-class TexameDelete(DeleteView):
+class TexameDelete(LoginRequiredMixin, DeleteView):
     model = Tabela_exame
     template_name = 'tabela_exame_confirm_delete.html'
 
@@ -165,14 +165,14 @@ class TexameDelete(DeleteView):
         return reverse('tabela_exame_list')
 
 
-class TexameListView(ListView):
+class TexameListView(LoginRequiredMixin, ListView):
     model = Tabela_exame
     template_name = 'tabela_exame_list.html'
 
 #########
 
 
-class ConvenioCreate(CreateView):
+class ConvenioCreate(LoginRequiredMixin, CreateView):
     model = Convenio
     form_class = ConvenioForm
     template_name = 'convenio_form.html'
@@ -181,7 +181,7 @@ class ConvenioCreate(CreateView):
         return reverse('convenio_list')
 
 
-class ConvenioUpdate(UpdateView):
+class ConvenioUpdate(LoginRequiredMixin, UpdateView):
     model = Convenio
     form_class = ConvenioForm
     template_name = 'convenio_form.html'
@@ -190,7 +190,7 @@ class ConvenioUpdate(UpdateView):
         return reverse('convenio_list')
 
 
-class ConvenioDelete(DeleteView):
+class ConvenioDelete(LoginRequiredMixin, DeleteView):
     model = Convenio
     template_name = 'convenio_confirm_delete.html'
 
@@ -198,7 +198,7 @@ class ConvenioDelete(DeleteView):
         return reverse('convenio_list')
 
 
-class ConvenioListView(ListView):
+class ConvenioListView(LoginRequiredMixin, ListView):
     model = Convenio
     template_name = 'convenio_list.html'
 
@@ -206,7 +206,7 @@ class ConvenioListView(ListView):
 #############################
 # Views de Atendimento
 #############################
-class PacienteView(CreateView):
+class PacienteView(LoginRequiredMixin, CreateView):
     model = Paciente
     template_name = 'paciente_form_inner.html'
     form_class = PacienteForm
@@ -215,7 +215,7 @@ class PacienteView(CreateView):
         return reverse('atendimento_new')
 
 
-class PacienteUpdateModal(UpdateView):
+class PacienteUpdateModal(LoginRequiredMixin, UpdateView):
     model = Paciente
     template_name = 'paciente_form_edit_inner.html'
     form_class = PacienteForm
@@ -224,7 +224,7 @@ class PacienteUpdateModal(UpdateView):
         return reverse('atendimento_new')
 
 
-class AtendimentoCreate(CreateView):
+class AtendimentoCreate(LoginRequiredMixin, CreateView):
     model = Atendimento
     form_class = AtendimentoForm
     template_name = 'atendimento_form.html'
@@ -233,7 +233,7 @@ class AtendimentoCreate(CreateView):
         return reverse('atendimento_list')
 
 
-class AtendimentoUpdate(UpdateView):
+class AtendimentoUpdate(LoginRequiredMixin, UpdateView):
     model = Atendimento
     form_class = AtendimentoForm
     template_name = 'atendimento_form.html'
@@ -242,7 +242,7 @@ class AtendimentoUpdate(UpdateView):
         return reverse('atendimento_list')
 
 
-class AtendimentoDelete(DeleteView):
+class AtendimentoDelete(LoginRequiredMixin, DeleteView):
     model = Atendimento
     # template_name_suffix = 'templates/'
     template_name = 'atendimento_confirm_delete.html'
@@ -251,6 +251,6 @@ class AtendimentoDelete(DeleteView):
         return reverse('atendimento_list')
 
 
-class AtendimentoListView(ListView):
+class AtendimentoListView(LoginRequiredMixin, ListView):
     model = Atendimento
     template_name = 'atendimento_list.html'

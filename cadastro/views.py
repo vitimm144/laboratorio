@@ -215,6 +215,15 @@ class PacienteView(CreateView):
         return reverse('atendimento_new')
 
 
+class PacienteUpdateModal(UpdateView):
+    model = Paciente
+    template_name = 'paciente_form_edit_inner.html'
+    form_class = PacienteForm
+
+    def get_success_url(self):
+        return reverse('atendimento_new')
+
+
 class AtendimentoCreate(CreateView):
     model = Atendimento
     form_class = AtendimentoForm

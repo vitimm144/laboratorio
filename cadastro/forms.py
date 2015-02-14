@@ -43,5 +43,5 @@ class AtendimentoForm(ModelForm):
         model = Atendimento
         fields = '__all__'
         widgets = {
-            'paciente': ChosenSelect(overlay="Choose")
+            'paciente': ChosenSelect(overlay="Choose", attrs={'id': 'paciente_chosen'})
         }

@@ -1,0 +1,38 @@
+<script>
+     function dismiss_modal () {
+        $('#edit').remove()
+        $('#form-modal-edit').remove()
+        $('#content').append(
+            '<div class="modal fade" id="form-modal-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'+
+            '<div class="modal-dialog">' +
+            '<div class="modal-content">' +
+            '</div>'+
+            '</div>'+
+            '</div>')
+     }
+     $('#remove_above').on('click', dismiss_modal);
+     $('#remove_bellow').on('click', dismiss_modal);
+
+
+</script>
+
+<div id="teste">
+<div class="modal-header">
+    <button id="remove_above" type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">Cadastro de paciente</h4>
+</div>
+<div id="form-modal-body" class="modal-body">
+    <form id="form_modal_edit" class="form" action="{% url 'atendimento_paciente_edit' paciente.id %}" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {{ form.as_p }}
+
+        <input data-toggle="modal" data-target="#form-modal-edit" type="submit" class="btn btn-submit ">
+    </form>
+</div>
+    <div class="modal-footer">
+    <button id="remove_bellow" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+</div>
+</div>

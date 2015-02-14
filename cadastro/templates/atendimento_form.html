@@ -14,8 +14,14 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="form-modal-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
 
-    <form class="cad_pac" action="." method="post">
+    <form id="atend_form" class="cad_pac" action="." method="post">
         <div><h1>Cadastro de Atendimento</h1></div>
         {% csrf_token %}
         {{ form.non_field_errors }}
@@ -29,7 +35,11 @@
             <label for="{{ form.paciente.id_for_label }}">Paciente:</label>
             {{ form.paciente }}
             <!--<button type="button" id="paciente_button"> + </button>-->
-            <a data-toggle="modal" href="{% url 'atendimento_paciente_new' %}" data-target="#form-modal">Click me</a>
+            <a id="modal" data-toggle="modal"
+               data-backdrop="static"
+               data-keyboard="false"
+               href="{% url 'atendimento_paciente_new' %}"
+               data-target="#form-modal">Click me</a>
         </p>
         <p>
             {{ form.medico.errors }}

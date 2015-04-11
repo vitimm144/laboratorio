@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.utils import timezone
+from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
 from login.views import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from .models import Paciente, Medico, Exame, Tabela_exame, Convenio, Atendimento
 from .forms import PacienteForm, MedicoForm, ExameForm, TexameForm, ConvenioForm, AtendimentoForm
+from django.core.cache import cache
 
 
 class AjaxTemplateMixin(object):
@@ -206,13 +208,14 @@ class ConvenioListView(LoginRequiredMixin, ListView):
 #############################
 # Views de Atendimento
 #############################
-class PacienteView(LoginRequiredMixin, CreateView):
+class PacienteView(CreateView):
     model = Paciente
     template_name = 'paciente_form_inner.html'
     form_class = PacienteForm
 
     def get_success_url(self):
-        return reverse('atendimento_new')
+        cache.set('paciente', self.object.pk)
+        return reverse('atendimento_new', )
 
 
 class PacienteUpdateModal(LoginRequiredMixin, UpdateView):
@@ -221,6 +224,8 @@ class PacienteUpdateModal(LoginRequiredMixin, UpdateView):
     form_class = PacienteForm
 
     def get_success_url(self):
+        cache.set('paciente', self.object.pk)
+
         return reverse('atendimento_new')
 
 
@@ -231,6 +236,16 @@ class AtendimentoCreate(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse('atendimento_list')
+    
+    def get_initial(self):
+        try:
+            paciente_id = cache.get('paciente')
+        except KeyError:
+            paciente_id = None
+
+        self.initial = {'paciente': paciente_id}
+        cache.delete('paciente')
+        return super(AtendimentoCreate, self).get_initial()
 
 
 class AtendimentoUpdate(LoginRequiredMixin, UpdateView):

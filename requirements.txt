@@ -11,3 +11,4 @@ django-filter
 ipdb
 -e git+https://github.com/theatlantic/django-chosen.git#egg=django-chosen
 django-crispy-forms
+data-importer

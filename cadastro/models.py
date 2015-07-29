@@ -1,10 +1,16 @@
 from django.db import models
 from django.core.urlresolvers import reverse
+import uuid
 
 
 class Paciente(models.Model):
 
-    numero_paciente = models.PositiveIntegerField(verbose_name='Numero do Paciente', unique=True)
+    numero_paciente = models.PositiveIntegerField(
+        verbose_name='Numero do Paciente',
+        unique=True,
+        primary_key=True,
+        auto_created=True
+    )
     data_registro = models.DateField(verbose_name='Data de Registro', auto_now=True)
     nome = models.CharField(max_length=200, verbose_name='Nome')
     GENDER_CHOICES = (
@@ -47,7 +53,6 @@ class Paciente(models.Model):
 
     def get_delete_url(self):
         return reverse('paciente_delete', kwargs={'pk': self.pk})
-
 
 
 class Medico (models.Model):
@@ -112,7 +117,7 @@ class Atendimento(models.Model):
 
     data_coleta = models.DateTimeField(auto_now_add=True)
     #TODO: O codigo do atendimento obedece ao local de coleta
-    codigo = models.IntegerField(verbose_name='Codigo do atendimento', unique=True, auto_created=True)
+    codigo = models.UUIDField(unique=True, default=uuid.uuid4)
     paciente = models.ForeignKey('Paciente', verbose_name='Paciente')
     medico = models.ForeignKey('Medico', verbose_name='Médico solicitante')
     atendimento_exames = models.ManyToManyField('Atendimento_exame', related_name='atendimento_exames')

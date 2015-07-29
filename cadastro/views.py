@@ -8,6 +8,7 @@ from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from .models import Paciente, Medico, Exame, Tabela_exame, Convenio, Atendimento
 from .forms import PacienteForm, MedicoForm, ExameForm, TexameForm, ConvenioForm, AtendimentoForm
 from django.core.cache import cache
+import uuid
 
 
 class AjaxTemplateMixin(object):
@@ -236,16 +237,6 @@ class AtendimentoCreate(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse('atendimento_list')
-    
-    def get_initial(self):
-        try:
-            paciente_id = cache.get('paciente')
-        except KeyError:
-            paciente_id = None
-
-        self.initial = {'paciente': paciente_id}
-        cache.delete('paciente')
-        return super(AtendimentoCreate, self).get_initial()
 
 
 class AtendimentoUpdate(LoginRequiredMixin, UpdateView):

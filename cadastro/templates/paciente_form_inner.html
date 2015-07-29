@@ -7,7 +7,7 @@
 <div id="form-modal-body" class="modal-body">
     <form id="form_modal" class="form" action="{% url 'atendimento_paciente_new' %}" method="post">
         {% csrf_token %}
-        {{ form.non_field_errors }}
+        <!--{{ form.non_field_errors }}-->
         {{ form.as_p }}
 
         <input data-toggle="modal" data-target="#form-modal" type="submit" class="btn btn-submit ">
